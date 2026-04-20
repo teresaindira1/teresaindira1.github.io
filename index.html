@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teresa Gupta Claver — AI Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #faf7f3;
+    --surface:    #ffffff;
+    --surface-2:  #f4ece6;
+    --line:       rgba(40, 30, 30, 0.09);
+    --text:       #1f1b1a;
+    --muted:      #7a6e6a;
+    --accent:     #c47c7c;
+    --accent-2:   #e8c4c4;
+    --accent-soft:#f5e2e2;
+    --shadow-sm:  0 1px 2px rgba(40,20,20,0.04);
+    --shadow-md:  0 8px 24px rgba(40,20,20,0.06);
+    --radius:     10px;
+    --radius-lg:  16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,247,243,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1180px; margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 20px; font-weight: 500; letter-spacing: -0.01em;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    padding: 9rem 0 6rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-blob {
+    position: absolute; top: 20%; right: -10%;
+    width: 520px; height: 520px; border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 65%);
+    filter: blur(20px);
+    pointer-events: none;
+    animation: drift 14s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-40px, 30px) scale(1.1); }
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 2rem; font-weight: 500;
+  }
+  .hero-tag::before {
+    content: ''; width: 28px; height: 1px; background: var(--accent);
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 7vw, 5.2rem);
+    font-weight: 500; line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 2rem;
+    max-width: 900px;
+  }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+
+  .hero-sub {
+    max-width: 560px;
+    font-size: 18px; color: var(--muted);
+    line-height: 1.6; margin-bottom: 2.5rem;
+  }
+  .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.8rem 1.5rem;
+    font-family: inherit; font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+    cursor: pointer; border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--text); color: var(--bg); }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-ghost { color: var(--text); border-color: var(--line); background: transparent; }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn svg { width: 14px; height: 14px; }
+
+  /* SECTIONS */
+  section { padding: 5rem 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; }
+
+  .section-label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+    margin-bottom: 2.5rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after {
+    content: ''; flex: 0 0 40px; height: 1px; background: var(--accent);
+    opacity: 0.4;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+    font-weight: 500; letter-spacing: -0.02em;
+    line-height: 1.15; margin-bottom: 1.25rem;
+    max-width: 720px;
+  }
+  h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: start;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .fact {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+  }
+  .fact-label {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 6px; font-weight: 600;
+  }
+  .fact-value { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.4; }
+
+  /* PROJECTS */
+  .projects {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+  }
+  .project {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    display: flex; flex-direction: column;
+  }
+  .project:hover {
+    border-color: rgba(196, 124, 124, 0.3);
+    box-shadow: var(--shadow-md);
+  }
+  .project-top {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; margin-bottom: 0.75rem;
+  }
+  .project-num {
+    font-family: 'Fraunces', serif; font-size: 13px;
+    color: var(--accent); font-weight: 500;
+  }
+  .project-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem; font-weight: 500; line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+  }
+  .project-desc { font-size: 14.5px; color: var(--muted); line-height: 1.6; margin-bottom: 1.25rem; }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1.25rem; }
+  .tag {
+    font-size: 11px; letter-spacing: 0.02em; font-weight: 500;
+    padding: 4px 10px; border-radius: 100px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+
+  .project-toggle {
+    margin-top: auto;
+    background: transparent; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: inherit; font-size: 13px; font-weight: 500;
+    color: var(--text); padding: 0; align-self: flex-start;
+    transition: color 0.2s;
+  }
+  .project-toggle:hover { color: var(--accent); }
+  .project-toggle .chev {
+    width: 14px; height: 14px; transition: transform 0.3s ease;
+  }
+  .project[data-open="true"] .project-toggle .chev { transform: rotate(180deg); }
+
+  .project-details {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+  .project[data-open="true"] .project-details { grid-template-rows: 1fr; }
+  .project-details-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+  .project-details-content {
+    padding-top: 1.25rem;
+    margin-top: 1.25rem;
+    border-top: 1px dashed var(--line);
+    display: grid; gap: 1rem;
+  }
+  .detail-row { display: grid; gap: 4px; }
+  .detail-label {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+  }
+  .detail-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* RESEARCH */
+  .research {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--accent-soft) 140%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 2.5rem; align-items: center;
+  }
+  .research-pill {
+    display: inline-flex;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    padding: 0.4rem 0.9rem; border-radius: 100px;
+    background: var(--accent); color: var(--bg); font-weight: 600;
+    white-space: nowrap;
+    margin-bottom: 1.25rem;
+  }
+  .research-title {
+    font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500;
+    line-height: 1.3; margin-bottom: 1rem; letter-spacing: -0.01em;
+  }
+  .research-desc { font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .research-image {
+    display: flex; align-items: center; justify-content: center;
+  }
+  .research-image img {
+    width: 100%; height: auto; display: block;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .skill-col {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+  }
+  .skill-col h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 1.25rem;
+  }
+  .skill-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 13px; color: var(--text);
+    padding: 6px 12px; border-radius: 100px;
+    background: var(--surface-2); border: 1px solid var(--line);
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+  .chip:hover { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+
+  /* EXPERIENCE */
+  .experience { position: relative; padding-left: 2rem; }
+  .experience::before {
+    content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px;
+    width: 1px; background: var(--line);
+  }
+  .exp {
+    position: relative; padding: 0 0 2rem 1.5rem;
+  }
+  .exp:last-child { padding-bottom: 0; }
+  .exp::before {
+    content: ''; position: absolute; left: -2rem; top: 8px;
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+  }
+  .exp-date {
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 0.04em; font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .exp h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem; font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .exp-company {
+    font-size: 13px; color: var(--accent); font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .exp-desc { font-size: 14.5px; color: var(--muted); line-height: 1.65; max-width: 720px; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end;
+  }
+  .contact-tagline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 500; line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 640px;
+  }
+  .contact-tagline em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .contact-links { display: flex; flex-direction: column; gap: 6px; min-width: 240px; }
+  .contact-link {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.9rem 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    text-decoration: none; color: var(--text);
+    font-size: 14px; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-link .arrow { color: var(--muted); transition: transform 0.2s; }
+  .contact-link:hover .arrow { transform: translateX(3px); color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 2rem 0;
+  }
+  .footer-inner {
+    max-width: 1180px; margin: 0 auto; padding: 0 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .hero { padding: 7rem 0 4rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .facts { grid-template-columns: 1fr 1fr; }
+    .projects { grid-template-columns: 1fr; }
+    .research { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; align-items: start; gap: 2rem; }
+    .footer-inner { flex-direction: column; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">Teresa <span>·</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+  <section class="hero" id="top">
+    <div class="hero-blob"></div>
+    <div class="hero-tag">AI Developer &amp; Researcher</div>
+    <h1>Teresa Gupta <em>Claver</em></h1>
+    <p class="hero-sub">Building ethical, impactful AI - from healthcare diagnostics to supply chain decarbonisation. Developing solutions based on business needs. Final-year AI student at VU Amsterdam. Eagered to learn and contribute to developing meaningful AI applications.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">
+        View projects
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="mailto:teresaindira22@gmail.com" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-label">About</div>
+    <div class="about-grid fade-up">
+      <div class="about-text">
+        <h2>Applied AI, <em>for real work.</em></h2>
+        <p>I'm an AI developer focused on <strong>applied AI in real-world business workflows</strong> - specifically agentic systems, machine learning pipelines, and LLM-based solutions.</p>
+        <p>Currently in my final year of an AI Bachelor at <strong>Vrije Universiteit Amsterdam</strong>, Intelligent Systems track with a minor in Managing Digital Innovation.</p>
+        <p>Part-time at <strong>CarbonLeap</strong>, I work on automating sustainability workflows for supply chain decarbonisation - from use case definition all the way through to deployment and iteration.</p>
+      </div>
+      <div class="facts">
+        <div class="fact">
+          <div class="fact-label">Current role</div>
+          <div class="fact-value">AI Developer<br>CarbonLeap · Amsterdam</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Education</div>
+          <div class="fact-value">BSc Artificial Intelligence<br>VU Amsterdam, final year</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Focus</div>
+          <div class="fact-value">Agentic AI · ML · Applied AI in business</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Languages</div>
+          <div class="fact-value">English · Spanish · Dutch A1 · French A1</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-label">Selected projects</div>
+    <div class="projects fade-up">
+
+      <article class="project" data-open="false">
+        <div class="project-top">
+          <span class="project-num">01</span>
+        </div>
+        <h3 class="project-title">Sales outreach pipeline</h3>
+        <p class="project-desc">End-to-end automated pipeline for prospect finding, AI-integrated research, and CRM integration - reducing manual outreach effort for a sustainability startup.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">Agentic AI</span><span class="tag">REST APIs</span><span class="tag">CRM</span>
+        </div>
+        <button class="project-toggle" aria-expanded="false">
+          Show details
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="project-details-inner">
+            <div class="project-details-content">
+              <div class="detail-row">
+                <span class="detail-label">Context</span>
+                <span class="detail-text">CarbonLeap needed to scale commercial outreach without adding headcount, while keeping messaging tailored to each prospect's sustainability profile.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">What I did</span>
+                <span class="detail-text">Designed and built the full pipeline - prospect discovery, AI-driven company research, CRM crosscheck, and write-back to HubSpot via their API.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Takeaway</span>
+                <span class="detail-text">How to architect end-to-end pipelines and combine AI agents with live business tooling in a way that's maintainable.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" data-open="false">
+        <div class="project-top">
+          <span class="project-num">02</span>
+        </div>
+        <h3 class="project-title">RAG architecture bot</h3>
+        <p class="project-desc">Retrieval-Augmented Generation chatbot grounding LLM responses in domain-specific knowledge via vector embeddings - improving accuracy and trust in outputs.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">OpenAI API</span><span class="tag">Embeddings</span><span class="tag">Supabase</span>
+        </div>
+        <button class="project-toggle" aria-expanded="false">
+          Show details
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="project-details-inner">
+            <div class="project-details-content">
+              <div class="detail-row">
+                <span class="detail-label">Context</span>
+                <span class="detail-text">Internal team needed a way to query domain-specific sustainability and regulatory knowledge without hallucinations.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">What I did</span>
+                <span class="detail-text">Built the embedding pipeline, vector store, and retrieval layer over OpenAI - tuning chunking and context window to balance recall with response quality.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Takeaway</span>
+                <span class="detail-text">RAG patterns and embedding strategies - balancing retrieval quality with response fluency is the real engineering challenge.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" data-open="false">
+        <div class="project-top">
+          <span class="project-num">03</span>
+        </div>
+        <h3 class="project-title">ML customer segmentation</h3>
+        <p class="project-desc">Vessel-based segmentation using IMO numbers for maritime supply chains - identifying shipping behaviour patterns to support decarbonisation targeting.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">Clustering</span><span class="tag">Logistic Regression</span>
+        </div>
+        <button class="project-toggle" aria-expanded="false">
+          Show details
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="project-details-inner">
+            <div class="project-details-content">
+              <div class="detail-row">
+                <span class="detail-label">Context</span>
+                <span class="detail-text">Commercial team wanted to prioritise shipping companies whose fleets were most addressable for FuelEU compliance.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">What I did</span>
+                <span class="detail-text">Engineered features from IMO-linked vessel data, clustered fleet behaviour, and built a logistic regression to score prospects.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Takeaway</span>
+                <span class="detail-text">Applying ML on sparse industry data - feature engineering from domain-specific identifiers is where most of the value lives.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" data-open="false">
+        <div class="project-top">
+          <span class="project-num">04</span>
+        </div>
+        <h3 class="project-title">Web platform — CarbonLeap</h3>
+        <p class="project-desc">Full-stack web development for a sustainability startup: React/Next.js frontend with Supabase backend, shipped in a fast-moving environment.</p>
+        <div class="project-tags">
+          <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Vercel</span>
+        </div>
+        <button class="project-toggle" aria-expanded="false">
+          Show details
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="project-details-inner">
+            <div class="project-details-content">
+              <div class="detail-row">
+                <span class="detail-label">Context</span>
+                <span class="detail-text">The company needed a public website and an internal tooling surface that could evolve quickly alongside product.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">What I did</span>
+                <span class="detail-text">Developed a Next.js frontend with Supabase-backed data, deployed on Vercel - balancing design polish with business model.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Takeaway</span>
+                <span class="detail-text">Full-stack delivery under startup constraints - how to move fast without compromising on the things that matter.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" data-open="false">
+        <div class="project-top">
+          <span class="project-num">05</span>
+        </div>
+        <h3 class="project-title">AI healthcare assistant</h3>
+        <p class="project-desc">LLM-based assistant for EMR reporting at Care2Report/Verticai - reducing GP documentation burden while maintaining strict clinical accuracy.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">LLMs</span><span class="tag">NLP</span><span class="tag">BERT Score</span>
+        </div>
+        <button class="project-toggle" aria-expanded="false">
+          Show details
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="project-details-inner">
+            <div class="project-details-content">
+              <div class="detail-row">
+                <span class="detail-label">Context</span>
+                <span class="detail-text">General practitioners spend hours per day on documentation — Care2Report wanted to automate EMR drafting without sacrificing clinical accuracy.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">What I am doing</span>
+                <span class="detail-text">Evaluate LLM-generated reports using BERT Score and related NLP metrics, identifying failure modes relevant to clinical use.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="section-label">Research</div>
+    <div class="research fade-up">
+      <div>
+        <span class="research-pill">Final year thesis</span>
+        <div class="research-title">To what extent can agentic AI and NLI-based entailment checking detect semantic omissions and clinical inaccuracies in AI-generated family doctor reports, and which method achieves higher detection performance on these metrics?</div>
+        <p class="research-desc">Investigating to what extent agentic AI and NLI-based entailment checking can detect semantic omissions and clinical inaccuracies in AI-generated family doctor reports - and which method achieves higher detection performance. Evaluated using BERT Score, ROUGE-N/L, FactCC, and SummaC metrics.</p>
+      </div>
+      <div class="research-image">
+        <img src="diagram.png" alt="Thesis methodology diagram" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid fade-up">
+      <div class="skill-col">
+        <h3>Programming &amp; Development</h3>
+        <div class="skill-chips">
+          <span class="chip">Python</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">React</span>
+          <span class="chip">Next.js</span>
+          <span class="chip">REST APIs</span>
+          <span class="chip">Apollo</span>
+          <span class="chip">Supabase</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">OpenAI API</span>
+          <span class="chip">Postman</span>
+          <span class="chip">Vercel</span>
+          <span class="chip">Vite</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h3>AI &amp; Machine Learning</h3>
+        <div class="skill-chips">
+          <span class="chip">Agentic AI</span>
+          <span class="chip">RAG Architecture</span>
+          <span class="chip">MCP Integrations</span>
+          <span class="chip">Vector Embeddings</span>
+          <span class="chip">NLP</span>
+          <span class="chip">BERT Score</span>
+          <span class="chip">Clustering</span>
+          <span class="chip">Decision Trees</span>
+          <span class="chip">Logistic Regression</span>
+          <span class="chip">Neural Networks</span>
+          <span class="chip">Linear Algebra</span>
+          <span class="chip">Statistics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <div class="experience fade-up">
+      <div class="exp">
+        <div class="exp-date">Dec 2024 — Present</div>
+        <h3>AI Developer</h3>
+        <div class="exp-company">CarbonLeap · Amsterdam (onsite, 20h/week)</div>
+        <p class="exp-desc">Building AI-based solutions for process automation in supply chain decarbonisation — targeting Scope 1 &amp; 3 emission reduction and FuelEU regulatory compliance. Projects span sales pipeline automation, RAG bots, ML segmentation, and full-stack web development.</p>
+      </div>
+      <div class="exp">
+        <div class="exp-date">Ongoing</div>
+        <h3>AI Researcher</h3>
+        <div class="exp-company">Care2Report / Verticai</div>
+        <p class="exp-desc">Developing an LLM-based AI assistant for EMR reporting in healthcare, focused on reducing GP documentation burden while preserving clinical accuracy.</p>
+      </div>
+      <div class="exp">
+        <div class="exp-date">Ongoing</div>
+        <h3>AI Ambassador</h3>
+        <div class="exp-company">Vrije Universiteit Amsterdam</div>
+        <p class="exp-desc">Representing AI initiatives at VU Amsterdam, alongside roles as IB Ambassador and Math Tutor.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="contact-grid fade-up">
+      <h2 class="contact-tagline">Let's talk about <em>applied AI,</em> research, or what's next.</h2>
+      <div class="contact-links">
+        <a href="mailto:teresaindira22@gmail.com" class="contact-link">
+          Email
+          <span class="arrow">→</span>
+        </a>
+        <a href="www.linkedin.com/in/teresa-indira-gupta-a44b42293" target="_blank" rel="noopener" class="contact-link">
+          LinkedIn
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>© Teresa Gupta Claver · Amsterdam</span>
+    <span>Hosted on GitHub Pages</span>
+  </div>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Expandable project cards
+  document.querySelectorAll('.project').forEach(card => {
+    const btn = card.querySelector('.project-toggle');
+    btn.addEventListener('click', () => {
+      const open = card.dataset.open === 'true';
+      card.dataset.open = String(!open);
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.firstChild.textContent = open ? 'Show details ' : 'Hide details ';
+    });
+  });
+</script>
+
+</body>
+</html>
